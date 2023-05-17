@@ -1,0 +1,12 @@
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\bin\Debug\net6.0\Users.Bll.deps.json
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\bin\Debug\net6.0\Users.Bll.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\bin\Debug\net6.0\Users.Bll.pdb
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.csproj.AssemblyReference.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.GeneratedMSBuildEditorConfig.editorconfig
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.AssemblyInfoInputs.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.AssemblyInfo.cs
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.csproj.CoreCompileInputs.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\refint\Users.Bll.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\Users.Bll.pdb
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Bll\obj\Debug\net6.0\ref\Users.Bll.dll

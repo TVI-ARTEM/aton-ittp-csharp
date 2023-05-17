@@ -1,0 +1,12 @@
+version: "3"
+services:
+    vk-users:
+        image: postgres
+        restart: always
+        container_name: aton-users
+        environment:
+            POSTGRES_USER: "aton-users"
+            POSTGRES_DB: "aton-users"
+            POSTGRES_PASSWORD: "123456"
+        ports:
+            - "15434:5432"

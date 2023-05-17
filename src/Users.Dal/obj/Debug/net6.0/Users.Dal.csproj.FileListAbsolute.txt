@@ -1,0 +1,17 @@
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Dal.deps.json
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Dal.runtimeconfig.json
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Dal.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Dal.pdb
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Bll.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\bin\Debug\net6.0\Users.Bll.pdb
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.csproj.AssemblyReference.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.GeneratedMSBuildEditorConfig.editorconfig
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.AssemblyInfoInputs.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.AssemblyInfo.cs
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.csproj.CoreCompileInputs.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.csproj.CopyComplete
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\refint\Users.Dal.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.pdb
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\Users.Dal.genruntimeconfig.cache
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Dal\obj\Debug\net6.0\ref\Users.Dal.dll
