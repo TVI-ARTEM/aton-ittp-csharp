@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Users.API.ActionFilters;
+namespace Users.Api.ActionFilters;
 
 internal sealed class ResponseTypeAttribute : ProducesResponseTypeAttribute
 {

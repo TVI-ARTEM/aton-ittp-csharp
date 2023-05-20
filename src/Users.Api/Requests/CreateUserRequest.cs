@@ -5,6 +5,7 @@ public record CreateUserRequest(
     string Password,
     string Name,
     int Gender,
-    DateTime Birthday,
-    bool Admin
+    DateTime? Birthday,
+    bool Admin,
+    string Token
 );

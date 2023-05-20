@@ -1,9 +1,11 @@
 using System.Net;
 using FluentValidation;
+using JWT.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 
-namespace Users.API.ActionFilters;
+namespace Users.Api.ActionFilters;
 
 public sealed class ExceptionFilterAttribute : Attribute, IExceptionFilter
 {
@@ -19,6 +21,19 @@ public sealed class ExceptionFilterAttribute : Attribute, IExceptionFilter
                 return;
             case ArgumentException exception:
                 HandleBadRequest(context, exception);
+                return;
+            case TokenNotYetValidException exception:
+                HandleBadRequest(context, exception);
+                return;
+            case TokenExpiredException exception:
+                HandleBadRequest(context, exception);
+                return;
+            case SignatureVerificationException exception:
+                HandleBadRequest(context, exception);
+                return;
+
+            case DbUpdateException exception:
+                HandleBadRequest(context, exception.InnerException ?? exception);
                 return;
             default:
                 HandlerInternalError(context);

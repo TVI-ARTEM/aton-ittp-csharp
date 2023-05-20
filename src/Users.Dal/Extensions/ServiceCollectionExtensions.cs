@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Npgsql;
 using Npgsql.NameTranslation;
-using Users.Bll.Models;
 using Users.Bll.Repositories.Interfaces;
 using Users.Dal.Contexts;
 using Users.Dal.Repositories;
@@ -15,8 +14,6 @@ namespace Users.Dal.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    private static readonly INpgsqlNameTranslator Translator = new NpgsqlSnakeCaseNameTranslator();
-
     public static IServiceCollection AddDalInfrastructure(
         this IServiceCollection services,
         IConfigurationRoot configuration)

@@ -3,7 +3,7 @@
 
 namespace Users.Dal.Migrations;
 
-[Migration(20230517, TransactionBehavior.None)]
+[Migration(20230516, TransactionBehavior.None)]
 public class Empty : Migration {
     public override void Up()
     {

@@ -96,3 +96,5 @@ D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\obj\Debug\net7.0\ref
 D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\obj\Debug\net7.0\Users.Api.pdb
 D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\obj\Debug\net7.0\Users.Api.genruntimeconfig.cache
 D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\obj\Debug\net7.0\ref\Users.Api.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\bin\Debug\net7.0\JWT.dll
+D:\HSE\Programming - C#\Aton\aton-ittp-csharp\src\Users.Api\bin\Debug\net7.0\Newtonsoft.Json.dll
