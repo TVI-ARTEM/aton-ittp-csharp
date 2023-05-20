@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Users.API.ActionFilters;
+using Users.Api.ActionFilters;
 using Users.Bll.Extensions;
 using Users.Dal.Contexts;
 using Users.Dal.Extensions;
@@ -22,7 +22,7 @@ services
         conf.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
         conf.AutomaticValidationEnabled = true;
     })
-    .AddBllInfrastructure()
+    .AddBllInfrastructure(builder.Configuration)
     .AddDalInfrastructure(builder.Configuration)
     .AddMvc(ConfigureMvc);
 

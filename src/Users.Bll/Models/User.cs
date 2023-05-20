@@ -8,19 +8,26 @@ namespace Users.Bll.Models;
 [Index(nameof(Login), IsUnique = true, Name = "IX_users_login")]
 public record User
 {
-    [Key, Column("guid")] public Guid Guid { get; set; }
+    [Key] [Column("guid")] public Guid Guid { get; set; }
 
-    [Column("login")] public string Login { get; set; } = null!;
-    [Column("password")] public string Password { get; set; } = null!;
+    [Column("login"), Required]
+    public string Login { get; set; } = null!;
 
-    [Column("name")] public string Name { get; set; } = null!;
-    [Column("gender")] public int Gender { get; set; }
+    [Column("password"), Required]
+    public string Password { get; set; } = null!;
+
+    [Column("name"), Required]
+    public string Name { get; set; } = null!;
+
+    [Column("gender"), Required]
+    public int Gender { get; set; }
+
     [Column("birthday")] public DateTime? Birthday { get; set; }
 
-    [Column("admin")] public bool Admin { get; set; }
+    [Column("admin"), Required] public bool Admin { get; set; }
 
-    [Column("created_on")] public DateTime CreatedOn { get; set; }
-    [Column("created_by")] public string CreatedBy { get; set; } = null!;
+    [Column("created_on"), Required] public DateTime CreatedOn { get; set; }
+    [Column("created_by")] public string? CreatedBy { get; set; }
 
     [Column("modified_on")] public DateTime? ModifiedOn { get; set; }
     [Column("modified_by")] public string? ModifiedBy { get; set; }

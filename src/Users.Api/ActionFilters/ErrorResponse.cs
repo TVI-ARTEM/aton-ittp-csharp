@@ -1,6 +1,4 @@
-using System.Net;
-
-namespace Users.API.ActionFilters;
+namespace Users.Api.ActionFilters;
 
 public class ErrorResponse
 {

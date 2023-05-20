@@ -8,6 +8,7 @@
 
 
     <ItemGroup>
+        <PackageReference Include="JWT" Version="10.0.2" />
         <PackageReference Include="Npgsql" Version="6.0.3" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
         <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
@@ -16,10 +17,4 @@
     </ItemGroup>
 
 
-    <ItemGroup>
-      <Folder Include="Commands\" />
-      <Folder Include="Queries\" />
-    </ItemGroup>
-    
-    
 </Project>
