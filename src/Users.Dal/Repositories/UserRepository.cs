@@ -21,27 +21,10 @@ internal class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> GetByAge(GetByAgeModel request, CancellationToken token)
     {
-        var getAge = (DateTime age) =>
-        {
-            var today = DateTime.UtcNow;
-            if (today.Month < age.Month)
-            {
-                return today.Year - age.Month - 1;
-            }
-
-            if (today.Month != age.Month) return today.Year - age.Year;
-
-            if (today.Day >= age.Day)
-            {
-                return today.Year - age.Year;
-            }
-
-            return today.Year - age.Year - 1;
-        };
-
-
         var users = await _context.Users
-            .Where(it => it.Birthday != null && getAge(it.Birthday.Value) > request.Age)
+            .Where(it =>
+                it.Birthday.HasValue &&
+                (DateTime.UtcNow - it.Birthday.Value).TotalDays / 365 > request.Age)
             .OrderBy(it => it.CreatedOn)
             .Skip(request.Skip)
             .Take(request.Take)

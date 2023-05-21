@@ -26,9 +26,9 @@ public class RevokeUserCommandHandler : IRequestHandler<RevokeUserCommand, Unit>
     {
         var userModifier = await _authService.AuthAdminToken(request.Token, cancellationToken);
 
-        if (userModifier.Login == "admin")
+        if (request.Login == "admin")
         {
-            throw new AggregateException("Access denied. Cannot change current user.");
+            throw new ArgumentException("Access denied. Cannot change current user.");
         }
 
         await _userService.RevokeUser(

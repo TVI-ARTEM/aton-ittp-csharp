@@ -27,11 +27,9 @@ public class UpdateUserLoginCommandHandler : IRequestHandler<UpdateUserLoginComm
     {
         var userModifier = await _authService.AuthToken(request.Token, cancellationToken);
 
-        switch (userModifier.Admin)
+        if (request.Login == "admin" || (!userModifier.Admin && userModifier.Login != request.Login))
         {
-            case true when userModifier.Login == "admin":
-            case false when userModifier.Login != request.Login:
-                throw new ArgumentException("Access denied. Cannot change current user.");
+            throw new ArgumentException("Access denied. Cannot change current user.");
         }
 
         var targetUser = await _userService.UpdateLoginUser(
@@ -39,7 +37,7 @@ public class UpdateUserLoginCommandHandler : IRequestHandler<UpdateUserLoginComm
                 Login: request.Login,
                 NewLogin: request.NewLogin,
                 ModifiedOn: request.ModifiedOn,
-                ModifiedBy: userModifier.Login
+                ModifiedBy: request.Login == userModifier.Login ? request.NewLogin : userModifier.Login
             ), cancellationToken
         );
 
