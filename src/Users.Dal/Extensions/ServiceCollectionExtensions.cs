@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Npgsql;
-using Npgsql.NameTranslation;
 using Users.Bll.Repositories.Interfaces;
 using Users.Dal.Contexts;
 using Users.Dal.Repositories;

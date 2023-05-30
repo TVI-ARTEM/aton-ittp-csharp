@@ -5,7 +5,6 @@ namespace Users.Api.Validations;
 
 public class GetByLoginRequestValidator : AbstractValidator<GetByLoginRequest>
 {
-
     public GetByLoginRequestValidator()
     {
         RuleFor(x => x.Login).NotEmpty();

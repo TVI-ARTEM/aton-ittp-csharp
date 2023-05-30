@@ -12,8 +12,8 @@ public record RestoreUserCommand(
 
 public class RestoreUserCommandHandler : IRequestHandler<RestoreUserCommand, UserInfoTokenModel>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public RestoreUserCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -27,9 +27,7 @@ public class RestoreUserCommandHandler : IRequestHandler<RestoreUserCommand, Use
         var userModifier = await _authService.AuthToken(request.Token, cancellationToken);
 
         if (!userModifier.Admin && userModifier.Login != request.Login)
-        {
             throw new AggregateException("Access denied. Cannot change current user.");
-        }
 
         var targetUser = await _userService.RestoreUser(
             new RestoreUserModel(
@@ -39,10 +37,8 @@ public class RestoreUserCommandHandler : IRequestHandler<RestoreUserCommand, Use
             ), cancellationToken
         );
 
-        if (targetUser == null)
-        {
-            throw new ArgumentNullException(nameof(request.Login), "User is not found");
-        }
+        if (targetUser == null) throw new ArgumentNullException(nameof(request.Login), "User is not found");
+
 
         var token = await _authService.GenerateToken(new TokenParameters(
             Login: targetUser.Login,
@@ -56,7 +52,7 @@ public class RestoreUserCommandHandler : IRequestHandler<RestoreUserCommand, Use
                 Birthday: targetUser.Birthday,
                 Revoked: targetUser.RevokedOn != null
             ),
-            Token: token
+            token
         );
     }
 }

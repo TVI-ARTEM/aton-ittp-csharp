@@ -12,8 +12,8 @@ public record GetUserActiveCommand(
 
 public class GetUserActiveCommandHandler : IRequestHandler<GetUserActiveCommand, IEnumerable<UserInfoModel>>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public GetUserActiveCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -41,6 +41,5 @@ public class GetUserActiveCommandHandler : IRequestHandler<GetUserActiveCommand,
                 Revoked: it.RevokedOn != null
             )
         );
-
     }
 }

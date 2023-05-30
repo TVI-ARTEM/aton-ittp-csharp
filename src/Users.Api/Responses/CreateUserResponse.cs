@@ -1,3 +1,3 @@
 ﻿namespace Users.Api.Responses;
 
-public record CreateUserResponse();
+public record CreateUserResponse;

@@ -15,8 +15,8 @@ public record UpdateUserCommand(
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserInfoTokenModel>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public UpdateUserCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -30,9 +30,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserI
         var userModifier = await _authService.AuthToken(request.Token, cancellationToken);
 
         if (request.Login == "admin" || (!userModifier.Admin && userModifier.Login != request.Login))
-        {
             throw new ArgumentException("Access denied. Cannot change current user.");
-        }
 
         var targetUser = await _userService.UpdateUser(
             new UpdateUserModel(
@@ -45,10 +43,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserI
             ), cancellationToken
         );
 
-        if (targetUser == null)
-        {
-            throw new ArgumentNullException(nameof(request.Login), "User is not found");
-        }
+        if (targetUser == null) throw new ArgumentNullException(nameof(request.Login), "User is not found");
 
         var token = await _authService.GenerateToken(new TokenParameters(
             Login: targetUser.Login,
@@ -62,7 +57,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserI
                 Birthday: targetUser.Birthday,
                 Revoked: targetUser.RevokedOn != null
             ),
-            Token: token
+            token
         );
     }
 }

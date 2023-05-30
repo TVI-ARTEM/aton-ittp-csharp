@@ -13,8 +13,8 @@ public record GetUserAgeCommand(
 
 public class GetUserAgeCommandHandler : IRequestHandler<GetUserAgeCommand, IEnumerable<UserInfoModel>>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public GetUserAgeCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -43,6 +43,5 @@ public class GetUserAgeCommandHandler : IRequestHandler<GetUserAgeCommand, IEnum
                 Revoked: it.RevokedOn != null
             )
         );
-
     }
 }

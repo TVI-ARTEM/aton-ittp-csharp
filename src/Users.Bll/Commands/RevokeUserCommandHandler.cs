@@ -12,8 +12,8 @@ public record RevokeUserCommand(
 
 public class RevokeUserCommandHandler : IRequestHandler<RevokeUserCommand, Unit>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public RevokeUserCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -21,21 +21,17 @@ public class RevokeUserCommandHandler : IRequestHandler<RevokeUserCommand, Unit>
         _authService = authService;
     }
 
-    public async Task<Unit> Handle(RevokeUserCommand request,
-        CancellationToken cancellationToken)
+    public async Task<Unit> Handle(RevokeUserCommand request, CancellationToken cancellationToken)
     {
         var userModifier = await _authService.AuthAdminToken(request.Token, cancellationToken);
 
-        if (request.Login == "admin")
-        {
-            throw new ArgumentException("Access denied. Cannot change current user.");
-        }
+        if (request.Login == "admin") throw new ArgumentException("Access denied. Cannot change current user.");
 
         await _userService.RevokeUser(
             new RevokeUserModel(
-                Login: request.Login,
-                RevokedOn: request.RevokedOn,
-                RevokedBy: userModifier.Login
+                request.Login,
+                request.RevokedOn,
+                userModifier.Login
             ), cancellationToken
         );
 

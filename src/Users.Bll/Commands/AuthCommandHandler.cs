@@ -11,8 +11,8 @@ public record AuthCommand(
 
 public class AuthCommandHandler : IRequestHandler<AuthCommand, UserInfoTokenModel>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public AuthCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -27,8 +27,8 @@ public class AuthCommandHandler : IRequestHandler<AuthCommand, UserInfoTokenMode
         EnsureCorrectData(request, user);
 
         var token = await _authService.GenerateToken(new TokenParameters(
-            Login: user!.Login,
-            Password: user.Password
+            user!.Login,
+            user.Password
         ), cancellationToken);
 
         return new UserInfoTokenModel(
@@ -38,20 +38,17 @@ public class AuthCommandHandler : IRequestHandler<AuthCommand, UserInfoTokenMode
                 Birthday: user.Birthday,
                 Revoked: user.RevokedOn != null
             ),
-            Token: token
+            token
         );
     }
 
     private static void EnsureCorrectData(AuthCommand request, User? user)
     {
-        if (user == null)
-        {
-            throw new ArgumentNullException(nameof(user), "Incorrect user's login!");
-        }
+        if (user == null) throw new ArgumentNullException(nameof(user), "Incorrect user's login!");
 
         if (user.Password.ToLower() != request.Password)
-        {
             throw new ArgumentException("Incorrect user's password!", nameof(request.Password));
-        }
+
+        if (user.RevokedOn != null) throw new ArgumentException("User is revoked");
     }
 }

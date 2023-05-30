@@ -65,25 +65,13 @@ internal class UserRepository : IUserRepository
     {
         var user = await _context.Users.FirstOrDefaultAsync(it => it.Login == request.Login, token);
 
-        if (user == null)
-        {
-            return user;
-        }
+        if (user == null) return user;
 
-        if (request.Birthday != null)
-        {
-            user.Birthday = request.Birthday;
-        }
+        if (request.Birthday != null) user.Birthday = request.Birthday;
 
-        if (request.Name != null)
-        {
-            user.Name = request.Name;
-        }
+        if (request.Name != null) user.Name = request.Name;
 
-        if (request.Gender != null)
-        {
-            user.Gender = (int)request.Gender;
-        }
+        if (request.Gender != null) user.Gender = (int)request.Gender;
 
         user.ModifiedOn = request.ModifiedOn;
         user.ModifiedBy = request.ModifiedBy;
@@ -97,10 +85,7 @@ internal class UserRepository : IUserRepository
     {
         var user = await _context.Users.FirstOrDefaultAsync(it => it.Login == request.Login, token);
 
-        if (user == null)
-        {
-            return user;
-        }
+        if (user == null) return user;
 
         user.Login = request.NewLogin;
 
@@ -116,10 +101,7 @@ internal class UserRepository : IUserRepository
     {
         var user = await _context.Users.FirstOrDefaultAsync(it => it.Login == request.Login, token);
 
-        if (user == null)
-        {
-            return user;
-        }
+        if (user == null) return user;
 
         user.Password = request.NewPassword;
 
@@ -134,10 +116,7 @@ internal class UserRepository : IUserRepository
     {
         var user = await _context.Users.FirstOrDefaultAsync(it => it.Login == request.Login, token);
 
-        if (user == null)
-        {
-            return user;
-        }
+        if (user == null) return user;
 
         user.RevokedOn = null;
         user.RevokedBy = null;
@@ -153,10 +132,7 @@ internal class UserRepository : IUserRepository
     {
         var user = await _context.Users.FirstOrDefaultAsync(it => it.Login == request.Login, token);
 
-        if (user == null)
-        {
-            return;
-        }
+        if (user == null) return;
 
         user.RevokedOn = request.RevokedOn;
         user.RevokedBy = request.RevokedBy;

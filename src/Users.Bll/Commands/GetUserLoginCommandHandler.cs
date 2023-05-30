@@ -11,8 +11,8 @@ public record GetUserLoginCommand(
 
 public class GetUserLoginCommandHandler : IRequestHandler<GetUserLoginCommand, UserInfoTokenModel>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public GetUserLoginCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -29,10 +29,7 @@ public class GetUserLoginCommandHandler : IRequestHandler<GetUserLoginCommand, U
             request.Login, cancellationToken
         );
 
-        if (user == null)
-        {
-            throw new ArgumentNullException(nameof(request.Login), "User is not found");
-        }
+        if (user == null) throw new ArgumentNullException(nameof(request.Login), "User is not found");
 
         var token = await _authService.GenerateToken(new TokenParameters(
             Login: user.Login,
@@ -46,7 +43,7 @@ public class GetUserLoginCommandHandler : IRequestHandler<GetUserLoginCommand, U
                 Birthday: user.Birthday,
                 Revoked: user.RevokedOn != null
             ),
-            Token: token
+            token
         );
     }
 }

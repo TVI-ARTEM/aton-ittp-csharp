@@ -1,3 +1,3 @@
 ﻿namespace Users.Api.Responses;
 
-public record RevokeUserResponse();
+public record RevokeUserResponse;

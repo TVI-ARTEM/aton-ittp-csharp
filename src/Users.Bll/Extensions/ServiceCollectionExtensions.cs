@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Users.Bll.Services;
 using Users.Bll.Services.Interfaces;
 using Users.Bll.Settings;
@@ -13,12 +14,10 @@ public static class ServiceCollectionExtensions
         IConfigurationRoot configuration)
     {
         services.Configure<JwtOptions>(configuration.GetSection(nameof(JwtOptions)));
-        
-        
         services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly));
-        services.AddTransient<IUserService, UserService>();
-        services.AddTransient<IAuthService, AuthService>();
-        
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
+
         return services;
     }
 }

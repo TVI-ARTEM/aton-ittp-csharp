@@ -10,23 +10,19 @@ public record User
 {
     [Key] [Column("guid")] public Guid Guid { get; set; }
 
-    [Column("login"), Required]
-    public string Login { get; set; } = null!;
+    [Column("login")] [Required] public string Login { get; set; } = null!;
 
-    [Column("password"), Required]
-    public string Password { get; set; } = null!;
+    [Column("password")] [Required] public string Password { get; set; } = null!;
 
-    [Column("name"), Required]
-    public string Name { get; set; } = null!;
+    [Column("name")] [Required] public string Name { get; set; } = null!;
 
-    [Column("gender"), Required]
-    public int Gender { get; set; }
+    [Column("gender")] [Required] public int Gender { get; set; }
 
     [Column("birthday")] public DateTime? Birthday { get; set; }
 
-    [Column("admin"), Required] public bool Admin { get; set; }
+    [Column("admin")] [Required] public bool Admin { get; set; }
 
-    [Column("created_on"), Required] public DateTime CreatedOn { get; set; }
+    [Column("created_on")] [Required] public DateTime CreatedOn { get; set; }
     [Column("created_by")] public string? CreatedBy { get; set; }
 
     [Column("modified_on")] public DateTime? ModifiedOn { get; set; }

@@ -22,12 +22,12 @@ public class UserController : ControllerBase
     {
         await _mediator.Send(
             new CreateUserCommand(
-                Login: request.Login,
-                Password: request.Password,
-                Name: request.Name,
-                Gender: request.Gender,
-                Birthday: request.Birthday,
-                Admin: request.Admin,
+                request.Login,
+                request.Password,
+                request.Name,
+                request.Gender,
+                request.Birthday,
+                request.Admin,
                 Token: request.Token,
                 CreatedOn: DateTime.UtcNow
             ), token);
@@ -39,20 +39,20 @@ public class UserController : ControllerBase
     public async Task<UserTokenResponse> Update(UpdateUserRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new UpdateUserCommand(
-            Login: request.Login,
-            Name: request.Name,
-            Gender: request.Gender,
-            Birthday: request.Birthday,
-            ModifiedOn: DateTime.UtcNow,
-            Token: request.Token
+            request.Login,
+            request.Name,
+            request.Gender,
+            request.Birthday,
+            DateTime.UtcNow,
+            request.Token
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: result.UserInfo.Name,
-                Gender: result.UserInfo.Gender,
-                Birthday: result.UserInfo.Birthday,
-                Revoked: result.UserInfo.Revoked
+                result.UserInfo.Name,
+                result.UserInfo.Gender,
+                result.UserInfo.Birthday,
+                result.UserInfo.Revoked
             ), result.Token);
     }
 
@@ -60,18 +60,18 @@ public class UserController : ControllerBase
     public async Task<UserTokenResponse> UpdatePassword(UpdateUserPasswordRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new UpdateUserPasswordCommand(
-            Login: request.Login,
-            NewPassword: request.NewPassword,
-            ModifiedOn: DateTime.UtcNow,
-            Token: request.Token
+            request.Login,
+            request.NewPassword,
+            DateTime.UtcNow,
+            request.Token
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: result.UserInfo.Name,
-                Gender: result.UserInfo.Gender,
-                Birthday: result.UserInfo.Birthday,
-                Revoked: result.UserInfo.Revoked
+                result.UserInfo.Name,
+                result.UserInfo.Gender,
+                result.UserInfo.Birthday,
+                result.UserInfo.Revoked
             ), result.Token);
     }
 
@@ -79,18 +79,18 @@ public class UserController : ControllerBase
     public async Task<UserTokenResponse> UpdateLogin(UpdateUserLoginRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new UpdateUserLoginCommand(
-            Login: request.Login,
-            NewLogin: request.NewLogin,
-            ModifiedOn: DateTime.UtcNow,
-            Token: request.Token
+            request.Login,
+            request.NewLogin,
+            DateTime.UtcNow,
+            request.Token
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: result.UserInfo.Name,
-                Gender: result.UserInfo.Gender,
-                Birthday: result.UserInfo.Birthday,
-                Revoked: result.UserInfo.Revoked
+                result.UserInfo.Name,
+                result.UserInfo.Gender,
+                result.UserInfo.Birthday,
+                result.UserInfo.Revoked
             ), result.Token);
     }
 
@@ -98,17 +98,17 @@ public class UserController : ControllerBase
     public async Task<UserTokenResponse> Restore(RestoreUserRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new RestoreUserCommand(
-            Login: request.Login,
-            ModifiedOn: DateTime.UtcNow,
-            Token: request.Token
+            request.Login,
+            DateTime.UtcNow,
+            request.Token
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: result.UserInfo.Name,
-                Gender: result.UserInfo.Gender,
-                Birthday: result.UserInfo.Birthday,
-                Revoked: result.UserInfo.Revoked
+                result.UserInfo.Name,
+                result.UserInfo.Gender,
+                result.UserInfo.Birthday,
+                result.UserInfo.Revoked
             ), result.Token);
     }
 
@@ -117,16 +117,16 @@ public class UserController : ControllerBase
         CancellationToken token)
     {
         var result = await _mediator.Send(new GetUserActiveCommand(
-            Take: request.Take,
-            Skip: request.Skip,
-            Token: request.Token
+            request.Take,
+            request.Skip,
+            request.Token
         ), token);
 
         return result.Select(it => new UserInfo(
-            Name: it.Name,
-            Gender: it.Gender,
-            Birthday: it.Birthday,
-            Revoked: it.Revoked
+            it.Name,
+            it.Gender,
+            it.Birthday,
+            it.Revoked
         ));
     }
 
@@ -134,16 +134,16 @@ public class UserController : ControllerBase
     public async Task<UserTokenResponse> GetByLogin([FromQuery] GetByLoginRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new GetUserLoginCommand(
-            Login: request.Login,
-            Token: request.Token
+            request.Login,
+            request.Token
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: result.UserInfo.Name,
-                Gender: result.UserInfo.Gender,
-                Birthday: result.UserInfo.Birthday,
-                Revoked: result.UserInfo.Revoked
+                result.UserInfo.Name,
+                result.UserInfo.Gender,
+                result.UserInfo.Birthday,
+                result.UserInfo.Revoked
             ), result.Token);
     }
 
@@ -152,17 +152,17 @@ public class UserController : ControllerBase
     public async Task<IEnumerable<UserInfo>> GetByAge([FromQuery] GetByAgeRequest request, CancellationToken token)
     {
         var result = await _mediator.Send(new GetUserAgeCommand(
-            Age: request.Age,
-            Take: request.Take,
-            Skip: request.Skip,
-            Token: request.Token
+            request.Age,
+            request.Take,
+            request.Skip,
+            request.Token
         ), token);
 
         return result.Select(it => new UserInfo(
-            Name: it.Name,
-            Gender: it.Gender,
-            Birthday: it.Birthday,
-            Revoked: it.Revoked
+            it.Name,
+            it.Gender,
+            it.Birthday,
+            it.Revoked
         ));
     }
 
@@ -171,16 +171,16 @@ public class UserController : ControllerBase
         CancellationToken token)
     {
         var userInfo = await _mediator.Send(new AuthCommand(
-            Login: request.Login,
-            Password: request.Password
+            request.Login,
+            request.Password
         ), token);
 
         return new UserTokenResponse(
             new UserInfo(
-                Name: userInfo.UserInfo.Name,
-                Gender: userInfo.UserInfo.Gender,
-                Birthday: userInfo.UserInfo.Birthday,
-                Revoked: userInfo.UserInfo.Revoked
+                userInfo.UserInfo.Name,
+                userInfo.UserInfo.Gender,
+                userInfo.UserInfo.Birthday,
+                userInfo.UserInfo.Revoked
             ), userInfo.Token);
     }
 
@@ -188,9 +188,9 @@ public class UserController : ControllerBase
     public async Task<RevokeUserResponse> Revoke([FromQuery] RevokeUserRequest request, CancellationToken token)
     {
         await _mediator.Send(new RevokeUserCommand(
-            Login: request.Login,
-            RevokedOn: DateTime.UtcNow,
-            Token: request.Token
+            request.Login,
+            DateTime.UtcNow,
+            request.Token
         ), token);
         return new RevokeUserResponse();
     }

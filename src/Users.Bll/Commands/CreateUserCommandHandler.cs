@@ -17,8 +17,8 @@ public record CreateUserCommand(
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Unit>
 {
-    private readonly IUserService _userService;
     private readonly IAuthService _authService;
+    private readonly IUserService _userService;
 
     public CreateUserCommandHandler(IUserService userService, IAuthService authService)
     {
@@ -40,7 +40,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Unit>
             Birthday: request.Birthday,
             CreatedOn: request.CreatedOn,
             CreatedBy: admin.Login
-        ), token: cancellationToken);
+        ), cancellationToken);
 
         return new Unit();
     }

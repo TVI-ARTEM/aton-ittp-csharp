@@ -5,7 +5,6 @@ namespace Users.Api.Validations;
 
 public class RestoreUserRequestValidator : AbstractValidator<RestoreUserRequest>
 {
-
     public RestoreUserRequestValidator()
     {
         RuleFor(x => x.Login).NotEmpty();

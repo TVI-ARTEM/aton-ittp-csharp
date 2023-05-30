@@ -13,5 +13,4 @@ public interface IUserService
     Task<User?> UpdatePasswordUser(UpdateUserPasswordModel request, CancellationToken token);
     Task<User?> RestoreUser(RestoreUserModel request, CancellationToken token);
     Task RevokeUser(RevokeUserModel request, CancellationToken token);
-
 }

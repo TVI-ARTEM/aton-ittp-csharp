@@ -12,8 +12,8 @@ namespace Users.Bll.Services;
 
 public class AuthService : IAuthService
 {
-    private readonly IUserRepository _userRepository;
     private readonly JwtOptions _options;
+    private readonly IUserRepository _userRepository;
 
     public AuthService(IUserRepository userRepository, IOptions<JwtOptions> options)
     {
@@ -26,20 +26,12 @@ public class AuthService : IAuthService
         var parameters = await ParseToken(token, cancellationToken);
         var user = await _userRepository.Get(parameters.Login, cancellationToken);
 
-        if (user == null)
-        {
-            throw new ArgumentNullException(nameof(token), "Incorrect token. User not found.");
-        }
+        if (user == null) throw new ArgumentNullException(nameof(token), "Incorrect token. User not found.");
 
         if (user.Password.ToLower() != parameters.Password.ToLower())
-        {
             throw new ArgumentException("Incorrect token. Incorrect password.");
-        }
 
-        if (user.RevokedOn != null)
-        {
-            throw new ArgumentException("User is revoked");
-        }
+        if (user.RevokedOn != null) throw new ArgumentException("User is revoked");
 
         return user;
     }
@@ -48,10 +40,7 @@ public class AuthService : IAuthService
     {
         var user = await AuthToken(token, cancellationToken);
 
-        if (!user.Admin)
-        {
-            throw new ArgumentException("Access denied. User is not admin.");
-        }
+        if (!user.Admin) throw new ArgumentException("Access denied. User is not admin.");
 
         return user;
     }
@@ -75,10 +64,10 @@ public class AuthService : IAuthService
             .WithSecret(Encoding.ASCII.GetBytes(_options.Key))
             .MustVerifySignature()
             .Decode<IDictionary<string, object>>(token);
-        
+
         var tokenParams = new TokenParameters(
-            Login: ((JsonElement)dict["login"]).GetString() ?? "",
-            Password: ((JsonElement)dict["password"]).GetString() ?? ""
+            ((JsonElement)dict["login"]).GetString() ?? "",
+            ((JsonElement)dict["password"]).GetString() ?? ""
         );
         return Task.FromResult(tokenParams);
     }

@@ -19,7 +19,6 @@ public class AddAdmin : Migration {
                     created_on = DateTime.UtcNow,
                 }
             );
-
     }
 
     public override void Down()
